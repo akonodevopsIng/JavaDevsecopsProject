@@ -25,7 +25,7 @@ resource "aws_security_group" "allow_all" {
 
 # Launch an EC2 instance
 resource "aws_instance" "my_ec2_instance" {
-  ami             = "ami-0f58b397bc5c1f2e8"
+  ami             = "ami-053b0d53c279acc90"
   instance_type   = "t2.large"
   key_name        = "MyNewKeyPair"
   security_groups = [aws_security_group.allow_all.name]
