@@ -1,6 +1,6 @@
 # Provider configuration
 provider "aws" {
-  region = "ap-south-1" # Specify the region
+  region = "us-east-1" # Specify the region
 }
 
 # Create a new security group that allows all inbound and outbound traffic
