@@ -12,10 +12,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# Security group: autorise tout le trafic entrant/sortant
+# Groupe de sécurité : autorise tout le trafic entrant/sortant
 resource "aws_security_group" "allow_all" {
-  name        = "allow_all_traffic"
+  name        = "allow_alll_traffic"
   description = "Allow all inbound and outbound traffic"
+  vpc_id      = data.aws_vpc.default.id
 
   ingress {
     from_port   = 0
@@ -40,20 +41,5 @@ data "aws_ami" "ubuntu" {
   filter {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-  }
-}
-
-resource "aws_instance" "ubuntu_server" {
-  ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.large"
-  key_name        = "MyNewKeyPair"
-  security_groups = [aws_security_group.allow_all.name]
-
-  root_block_device {
-    volume_size = 30
-  }
-
-  tags = {
-    Name = "MyUbuntuInstance"
   }
 }
